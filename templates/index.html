@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Store location</title>
-    <!-- Include Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <!-- Include Leaflet JavaScript -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <style>
         #map {
             height: 100vh;
         }
-        /* Set the body and HTML to fill the entire viewport */
         body, html {
             margin: 0;
             padding: 0;
@@ -32,7 +29,6 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
     
-        // Array to store markers for easier access
         var markers = [];
 
         var defaultIcon = L.icon({
@@ -48,72 +44,58 @@
         {% for row in rows %}
             (function() {
                 var marker = L.marker([{{ row[1] }}, {{ row[2] }}]).addTo(map);
-                var originalIcon = marker.options.icon; // Store the original icon
-
-                // Bind popup with modified content
+                var originalIcon = marker.options.icon; 
+        
                 marker.bindPopup('<b>{{ row[0] }}</b><br>{{ row[3] }}<br>{{ row[4] }}');
-    
-    
-                // Push marker to the markers array
+
                 markers.push(marker);
-    
-                // Create circle around marker to represent proximity of 500km
+
                 var circle = L.circle([{{ row[1] }}, {{ row[2] }}], {
                     color: 'blue',
                     fillColor: '#3186cc',
                     fillOpacity: 0,
-                    radius: 5000, // 500km in meters
+                    radius: 5000, 
                     opacity: 0,
                 }).addTo(map);
     
-                // Show circle when marker is hovered
                 marker.on('mouseover', function (e) {   
-                    circle.setStyle({fillOpacity: 0.2}); // Show the circle
+                    circle.setStyle({fillOpacity: 0.2}); 
                     this.openPopup();
     
-                    // Highlight markers within proximity
                     highlightMarkersWithinProximity(this);
                 });
     
-                // Hide circle and remove highlight when mouse leaves marker
                 marker.on('mouseout', function (e) {
-                    circle.setStyle({fillOpacity: 0}); // Hide the circle
+                    circle.setStyle({fillOpacity: 0}); 
                     this.closePopup();
     
-                    // Reset marker to original icon
                     this.setIcon(originalIcon);
     
-                    // Remove highlight from markers within proximity
                     removeHighlightFromMarkers();
                 });
     
-                // Function to highlight markers within proximity
                 function highlightMarkersWithinProximity(hoveredMarker) {
                     markers.forEach(function(marker) {
                         if (marker !== hoveredMarker) {
-                            // Calculate distance between hovered marker and other markers
                             var distance = map.distance(
                                 hoveredMarker.getLatLng(),
                                 marker.getLatLng()
                             );
     
-                            // Check if the other marker is within proximity (5000 meters)
                             if (distance <= 5000) {
-                                // Highlight the marker within proximity
                                 marker.setIcon(L.icon({
-                                    iconUrl: 'https://www.clipartmax.com/png/small/295-2953301_google-map-marker-green.png', // Path to your highlighted marker icon
-                                    iconSize: [25, 41], // Adjust the size according to your marker icon
-                                    iconAnchor: [12, 41], // Adjust the anchor point if necessary
+                                    iconUrl: 'https://www.clipartmax.com/png/small/295-2953301_google-map-marker-green.png',
+                                    iconSize: [25, 41], 
+                                    iconAnchor: [12, 41], 
                                 }));
                             }
                         }
                     });
                 }
     
-                // Function to remove highlight from markers within proximity
                 function removeHighlightFromMarkers() {
                     markers.forEach(function(marker) {
-                        marker.setIcon(originalIcon); // Reset the icon to the original
+                        marker.setIcon(originalIcon); 
                     });
                 }
             })();
