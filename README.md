@@ -8,11 +8,12 @@
 </body>
 <div>
   <h3>Guide</h3>
-    <ul>
+    <ol>
         <li>Scrape data from the website - Scrape.py</li>
         <li>Get coordinate using geopy - coordinate.py</li>
-        <li>Serve the website - flask.py</li>
-    </ul>
+        <li>Serve the backend data - flask.py</li>
+        <li>Make the website interactive - templates/html.index</li>
+    </ol>
   <img src="https://github.com/amirulazreen/Scrape-Geolocation/blob/main/result.jpg"/>
 </div>
 </html>
