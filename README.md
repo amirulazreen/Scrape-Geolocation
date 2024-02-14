@@ -9,7 +9,7 @@
 <div>
   <h3>Guide</h3>
     <ol>
-        <li>Scrape data from the website - source</li>
+        <li>Scrape data from the website - source.py</li>
         <li>Get coordinate using geopy - coordinate.py</li>
         <li>Serve the backend data - flask.py</li>
         <li>Make the website interactive - templates/html.index</li>
