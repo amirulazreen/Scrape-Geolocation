@@ -3,7 +3,7 @@
 <body>
   <h1>Scrape & Geolocation</h1>
   <p>Scraping and serving the data using geolocation.</p>
-  <p>Google map geolocation API are needed to get coordinate (Free for new user)</p>
+  <p>Google map geolocation API are needed to get coordinate (Free credit for new user)</p>
   <p>Disclaimer - The scraping is for learning purpose only</p>
 </body>
 <div>
