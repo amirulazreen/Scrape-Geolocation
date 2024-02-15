@@ -12,7 +12,7 @@
         <li>Scrape data from the website - source.py</li>
         <li>Get coordinate using geopy - coordinate.py</li>
         <li>Serve the backend data - app.py</li>
-        <li>Make the website interactive - templates/html.index</li>
+        <li>Make the website interactive - templates/index.html</li>
     </ol>
   <img src="https://github.com/amirulazreen/Scrape-Geolocation/blob/main/result.jpg"/>
 </div>
